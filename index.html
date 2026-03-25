@@ -1,60 +1,39 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>szudzsi</title>
-</head>
-<body>
-
-</body>
-</html>
-<!DOCTYPE html>
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
     <title>SZUDZSI</title>
 
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+
     <style>
         body {
             background-color: #E5FCCD;
             margin: 0;
-            font-family: Bagel Fat One
+            font-family: Arial, sans-serif;
         }
 
+        /* SZUDZSI szöveg */
         .title {
             position: absolute;
             left: 550px;
             top: 20px;
-            font-size: 100px
-            color:}
-            @keyframes colorChange {
+            font-size: 100px;
+            font-weight: bold;
+            animation: colorChange 2s infinite alternate;
+        }
+
+        /* Színátmenetes animáció */
+        @keyframes colorChange {
             from {
                 color: #084734;
             }
             to {
                 color: #CEF17B;
             }
-            font-weight: regular;
-            transition: colorChange 2s infinite alternate;
-         
         }
-    </style>
-</head>
-<body>
 
-    <div class="title" id="szoveg">SZUDZSI</div>
-
-    <script>
-        let isGreen = true;
-        const text = document.getElementById("szoveg");
-
-        setInterval(() => {
-            if (isGreen) {
-                text.style.color = "#CEF17B";
-            } else {
-                text.style.color = "#084734";
-            }
-            isGreen = !isGreen;
-        }, 2000);
         /* Fejléc */
         .header {
             position: absolute;
@@ -65,10 +44,37 @@
             background-color: #CEF17B;
             display: flex;
             align-items: center;
-            justify-content: center; 
-            
-       
-    </script>
+            justify-content: center;
+        }
+
+        /* Gomb */
+        .button {
+            width: 100px;
+            height: 30px;
+            background-color: #E5FCCD;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bagel Fat One', cursive;
+            font-size: 30px;
+            color: #084734;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="title">SZUDZSI</div>
+
+    <div class="header">
+        <div class="button">képek</div>
+    </div>
 
 </body>
 </html>
