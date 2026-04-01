@@ -1,0 +1,107 @@
+/* Közös stílusok */
+body {
+    background-color: #E5FCCD;
+    margin: 0;
+    font-family: 'Bagel Fat One', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Átmenet animáció */
+.transition-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    pointer-events: none;
+    transition: width 0.8s ease-in, height 0.8s ease-in;
+}
+
+/* Főoldali sötétzöld tágulás */
+.overlay-to-dark { background-color: #084734; }
+/* Aloldali világoszöld tágulás */
+.overlay-to-light { background-color: #CEF17B; }
+
+.transition-overlay.active {
+    width: 300vw;
+    height: 300vw;
+}
+
+/* CÍM ÉS KÜLSŐ FÉLKÖR */
+.outer-arc {
+    position: relative;
+    width: 800px; /* Nagyobb félkör */
+    height: 400px;
+    background-color: transparent; /* Csak keretnek/tárolónak használjuk */
+    border: 5px solid #084734; /* Opcionális: adhatsz neki egy vékony ívet */
+    border-radius: 0 0 400px 400px;
+    margin-top: 100px; /* Lejjebb toljuk az egészet */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 100px;
+    color: #084734; /* Fix sötétzöld */
+    margin-top: 20px;
+    z-index: 10;
+}
+
+/* BELSŐ FÉLKÖR (Menüsor) */
+.header-arc {
+    position: absolute;
+    top: 150px; /* Belóg a külső ívbe */
+    width: 600px;
+    height: 300px;
+    background-color: #CEF17B;
+    border-radius: 0 0 300px 300px;
+    display: flex;
+    justify-content: center;
+}
+
+/* GOMBOK */
+.button {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background-color: #084734;
+    color: #CEF17B;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Csak méretváltozás */
+    border: none;
+    text-decoration: none;
+}
+
+/* Hover: Csak nő, nem mozdul el */
+.button:hover {
+    transform: scale(1.2) !important; 
+}
+
+/* Gombok pozíciója (vízszintes szöveggel) */
+.btn-1 { top: 70px; left: 40px; }
+.btn-2 { bottom: 20px; left: 50%; transform: translateX(-50%); }
+.btn-3 { top: 70px; right: 40px; }
+
+/* Vissza gomb az aloldalakon */
+.back-btn {
+    padding: 15px 30px;
+    background-color: #CEF17B;
+    color: #084734;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 20px;
+    transition: transform 0.3s;
+}
+.back-btn:hover { transform: scale(1.1); }
