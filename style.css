@@ -100,6 +100,9 @@ button, .button, .back-circle {
     transition: transform 0.3s ease;
     font-size: 14px;
 }
+/* ELLEN-FORGATÁS: A szöveg vízszintes marad a dőlt keretben is */
+.container-1 .button { transform: rotate(25deg); } /* Visszaforgatjuk a balt */
+.container-3 .button { transform: rotate(-25deg); } /* Visszaforgatjuk a jobbat */
 
 /* Hover: Nagyítás + Megtartjuk az ellenforgatást! */
 .container-1 .button:hover { transform: rotate(0deg) scale(1.1); }
