@@ -4,33 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SZUDZSI</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="transition-overlay overlay-to-dark" id="overlay"></div>
 
-    <div class="button-container container-1">
-            <div class="button" onclick="pageTransition('kepek.html')">KÉPEK</div>
-        </div>
+    <div class="outer-circle">
+        
+        <div class="title">SZUDZSI</div>
+        
+        <div class="header-arc">
+            
+            <div class="button-container container-1">
+                <div class="button" onclick="pageTransition('kepek.html')">KÉPEK</div>
+            </div>
 
-        <div class="button-container container-2">
-            <div class="button" onclick="pageTransition('rolam.html')">RÓLAM</div>
-        </div>
+            <div class="button-container container-2">
+                <div class="button" onclick="pageTransition('rolam.html')">RÓLAM</div>
+            </div>
 
-        <div class="button-container container-3">
-            <div class="button" onclick="pageTransition('info.html')">INFÓ</div>
+            <div class="button-container container-3">
+                <div class="button" onclick="pageTransition('info.html')">INFÓ</div>
+            </div>
+            
         </div>
     </div>
 
     <script>
         function pageTransition(url) {
             const overlay = document.getElementById('overlay');
+            
+            // Aktiváljuk a táguló kört
             overlay.classList.add('active');
-            // 0.8 másodperc múlva vált oldalt (ennyi az animáció)
-            setTimeout(() => { window.location.href = url; }, 1000);
+            
+            // Megvárjuk az animáció végét (0.8 mp), majd ugrunk az új oldalra
+            setTimeout(() => {
+                window.location.href = url;
+            }, 1000);
         }
+    </script>
+
+</body>
+</html>
     </script>
 
 </body>
