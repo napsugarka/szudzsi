@@ -3,39 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SZUDZSI - Oldalnév</title>
-    <style>
-        body {
-            background-color: #084734; /* Sötétzöld háttér az aloldalakon */
-            color: #CEF17B;
-            font-family: 'Bagel Fat One', cursive;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        
-        /* Vissza gomb */
-        .back-btn {
-            margin-top: 30px;
-            padding: 10px 20px;
-            background-color: #CEF17B;
-            color: #084734;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 20px;
-            cursor: pointer;
-        }
-    </style>
+    <title>SZUDZSI - Infó</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-page">
+    <div class="transition-overlay overlay-to-light" id="overlay"></div>
 
-    <h1>INFÓ</h1>
-    <p>Ide jöhet a tartalom (képek, szöveg, stb.)</p>
+    <div style="text-align: center; margin-top: 50px;">
+        <h1 style="color: #084734; font-size: 60px;">INFÓ</h1>
+        
+        <p style="color: #084734;">Hamarosan...</p>
 
-    <a href="index.html" class="back-btn">VISSZA</a>
+        <div class="back-btn-container">
+            <button class="back-circle" onclick="pageTransition('index.html')">VISSZA</button>
+        </div>
+    </div>
+
+    <script>
+        function pageTransition(url) {
+            const overlay = document.getElementById('overlay');
+            overlay.classList.add('active');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 800);
+        }
+    </script>
 
 </body>
 </html>
