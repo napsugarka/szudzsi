@@ -1,6 +1,6 @@
-/* ALAPBEÁLLÍTÁSOK */
+/* 1. ALAPBEÁLLÍTÁSOK ÉS BETŰTÍPUS */
 body {
-    background-color: #CEF17B; /* Főoldal világos háttere */
+    background-color: #E5FCCD; /* Főoldal világos háttere */
     margin: 0;
     font-family: 'Bagel Fat One', cursive;
     display: flex;
@@ -10,12 +10,12 @@ body {
     min-height: 100vh;
 }
 
-/* BETŰTÍPUS KÉNYSZERÍTÉSE MINDENRE */
-button, input, select, textarea {
+/* Betűtípus kényszerítése a gombokra is */
+button, .button {
     font-family: 'Bagel Fat One', cursive !important;
 }
 
-/* ANIMÁCIÓS RÉTEG */
+/* 2. ANIMÁCIÓS RÉTEG (Kattintáskor táguló kör) */
 .transition-overlay {
     position: fixed;
     top: 50%;
@@ -32,7 +32,7 @@ button, input, select, textarea {
 .overlay-to-light { background-color: #CEF17B; }
 .transition-overlay.active { width: 300vw; height: 300vw; }
 
-/* FŐOLDALI NAGY SÖTÉTZÖLD KÖR */
+/* 3. FŐOLDALI NAGY SÖTÉTZÖLD KÖR */
 .outer-circle {
     position: relative;
     width: 650px;
@@ -48,14 +48,14 @@ button, input, select, textarea {
 .title {
     font-size: 100px;
     color: #CEF17B;
-    margin-top: 130px; /* Itt állítsd, ha még lejjebb szeretnéd (pl. 150px) */
+    margin-top: 130px; /* Cím lejjebb tolva */
     z-index: 5;
 }
 
-/* MENÜ FÉLKÖR */
+/* 4. VILÁGOSZÖLD MENÜ FÉLKÖR */
 .header-arc {
     position: absolute;
-    top: 320px;
+    top: 350px; /* A nagy kör közepétől indul */
     width: 550px;
     height: 275px;
     background-color: #CEF17B;
@@ -63,29 +63,29 @@ button, input, select, textarea {
     display: flex;
     justify-content: center;
 }
-/* GOMBOK KÖRÜLI KERETEK */
+
+/* 5. GOMBOK KÖRÜLI SÖTÉTZÖLD KERETEK */
 .button-container {
     position: absolute;
-    width: 100px; /* Előírt szélesség */
-    height: 180px; /* Úgy állítottam be, hogy ne lógjon ki a körből */
-    border: 3px solid #084734; /* Sötétzöld szegély */
-    border-radius: 50px; /* Lekerekített sarkok (félkörszerű vég) */
+    width: 100px;
+    height: 180px;
+    border: 3px solid #084734;
+    border-radius: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* A gomb a keret tetején kezdődik */
+    justify-content: flex-start;
     padding-top: 10px;
     box-sizing: border-box;
 }
 
-/* Pozíciók a kereteknek (a gombok helyett ezeket mozgatjuk) */
+/* Keretek elhelyezése */
 .container-1 { top: 40px; left: 35px; transform: rotate(-10deg); }
 .container-3 { top: 40px; right: 35px; transform: rotate(10deg); }
 .container-2 { bottom: -20px; left: 50%; transform: translateX(-50%); height: 150px; }
 
-/* FŐOLDALI GOMBOK */
+/* 6. GOMBOK STÍLUSA */
 .button {
-position: relative; /* Kikerültek az abszolút pozícióból */
     width: 80px;
     height: 80px;
     background-color: #084734;
@@ -98,28 +98,23 @@ position: relative; /* Kikerültek az abszolút pozícióból */
     border: none;
     transition: transform 0.3s ease;
     font-size: 14px;
-    font-family: 'Bagel Fat One', cursive !important;
+    text-align: center;
 }
+
 .button:hover {
     transform: scale(1.1);
 }
-.btn-1 { top: 60px; left: 40px; }
-.btn-3 { top: 60px; right: 40px; }
-.btn-2 { bottom: 20px; left: 50%; transform: translateX(-50%); }
 
-.btn-1:hover, .btn-3:hover { transform: scale(1.2); }
-.btn-2:hover { transform: translateX(-50%) scale(1.2); }
-
-/* SÖTÉT ALOLDAL STÍLUSA */
+/* 7. SÖTÉT ALOLDALAK STÍLUSA (Képek, Rólam, Blog) */
 .dark-page {
-    background-color: #084734 !important; /* Sötétzöld háttér kényszerítése */
+    background-color: #084734 !important;
 }
 
 .dark-page h1, .dark-page p {
-    color: #CEF17B; /* Középzöld feliratok */
+    color: #CEF17B;
 }
 
-/* VISSZA GOMB AZ ALOLDALON */
+/* 8. VISSZA GOMB AZ ALOLDALAKON */
 .back-btn-container {
     display: flex;
     justify-content: center;
@@ -129,8 +124,8 @@ position: relative; /* Kikerültek az abszolút pozícióból */
 .back-circle {
     width: 120px;
     height: 120px;
-    background-color: #CEF17B; /* Középzöld kör */
-    color: #084734;           /* Sötétzöld szöveg */
+    background-color: #CEF17B;
+    color: #084734;
     border-radius: 50%;
     display: flex;
     align-items: center;
