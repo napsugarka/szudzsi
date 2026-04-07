@@ -19,16 +19,16 @@
         
         <div class="header-arc">
             
-            <div class="button-container container-1">
+            <div class="button-container">
                 <div class="button" onclick="pageTransition('kepek.html')">KÉPEK</div>
             </div>
 
-            <div class="button-container container-2">
+            <div class="button-container">
                 <div class="button" onclick="pageTransition('rolam.html')">RÓLAM</div>
             </div>
 
-            <div class="button-container container-3">
-                <div class="button" onclick="pageTransition('info.html')">INFÓ</div>
+            <div class="button-container">
+                <div class="button" onclick="pageTransition('blog.html')">BLOG</div>
             </div>
             
         </div>
@@ -37,19 +37,11 @@
     <script>
         function pageTransition(url) {
             const overlay = document.getElementById('overlay');
-            
-            // Aktiváljuk a táguló kört
             overlay.classList.add('active');
-            
-            // Megvárjuk az animáció végét (0.8 mp), majd ugrunk az új oldalra
             setTimeout(() => {
                 window.location.href = url;
-            }, 1000);
+            }, 800);
         }
-    </script>
-
-</body>
-</html>
     </script>
 
 </body>
