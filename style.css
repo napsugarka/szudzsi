@@ -1,18 +1,20 @@
-/* 1. ALAPBEÁLLÍTÁSOK ÉS BETŰTÍPUS */
 /* 1. ALAPOK */
 body {
-    background-color: #CEF17B;
+    background-color: #E5FCCD;
     margin: 0;
     padding: 0;
     font-family: 'Bagel Fat One', cursive;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: hidden;
     min-height: 100vh;
 }
 
-/* Betűtípus kényszerítése */
+/* SÖTÉT OLDAL JAVÍTÁSA - Kényszerített sötét háttér */
+body.dark-page {
+    background-color: #084734 !important;
+}
+
 button, .button, .back-circle {
     font-family: 'Bagel Fat One', cursive !important;
 }
@@ -36,9 +38,9 @@ button, .button, .back-circle {
 
 /* 3. FŐOLDALI NAGY SÖTÉTZÖLD KÖR */
 .outer-circle {
-    position: relative; /* Fontos a belső elemek miatt */
-    width: 650px;
-    height: 650px;
+    position: relative;
+    width: 700px;
+    height: 700px;
     background-color: #084734;
     border-radius: 50%;
     margin-top: 50px;
@@ -50,40 +52,38 @@ button, .button, .back-circle {
 .title {
     font-size: 100px;
     color: #CEF17B;
-    margin-top: 130px;
+    margin-top: 100px;
     z-index: 5;
-    text-align: center;
 }
 
 /* 4. VILÁGOSZÖLD MENÜ FÉLKÖR */
 .header-arc {
     position: absolute;
-    top: 330px; 
-    width: 550px;
-    height: 275px;
+    top: 320px; 
+    width: 600px;
+    height: 300px;
     background-color: #CEF17B;
-    border-radius: 0 0 275px 275px;
-    /* Ez tartja bent a gombokat: */
-    display: block; 
-}
-
-/* 5. GOMBOK KÖRÜLI SÖTÉTZÖLD KERETEK */
-.button-container {
-    position: absolute; /* A header-arc-hoz képest nézi a helyét */
-    width: 100px;
-    height: 210px;
-    border: 5px solid #084734;
-    border-radius: 50px;
+    border-radius: 0 0 300px 300px;
+    /* Gombok vízszintes elrendezése */
     display: flex;
     justify-content: center;
-    padding-top: 10px;
-    box-sizing: border-box;
+    gap: 40px; /* Távolság a gombok között */
+    padding-top: 20px; /* 20px távolság a tetejétől */
 }
 
-/* Keretek pontos helye a félkörön belül */
-.container-1 { top: 30px; left: 50px; transform: rotate(0deg); }
-.container-3 { top: 30px; right: 50px; transform: rotate(0deg); }
-.container-2 { bottom: 0px; left: 50%; transform: translateX(-50%); height: 240px; }
+/* 5. GOMBOK KÖRÜLI KERETEK - Felülről lógó téglalapok */
+.button-container {
+    width: 100px;
+    height: 160px; /* Hosszúság lefelé */
+    border: 3px solid #084734;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    box-sizing: border-box;
+    background-color: transparent;
+}
 
 /* 6. GOMBOK STÍLUSA */
 .button {
@@ -100,23 +100,16 @@ button, .button, .back-circle {
     transition: transform 0.3s ease;
     font-size: 14px;
 }
-/* ELLEN-FORGATÁS: A szöveg vízszintes marad a dőlt keretben is */
-.container-1 .button { transform: rotate(0deg); } /* Visszaforgatjuk a balt */
-.container-3 .button { transform: rotate(0deg); } /* Visszaforgatjuk a jobbat */
 
-/* Hover: Nagyítás + Megtartjuk az ellenforgatást! */
-.container-1 .button:hover { transform: rotate(0deg) scale(1.1); }
-.container-3 .button:hover { transform: rotate(0deg) scale(1.1); }
-.container-2 .button:hover { transform: scale(1.1); }
+.button:hover {
+    transform: scale(1.1);
 }
 
-/* 7. SÖTÉT ALOLDALAK STÍLUSA */
-.dark-page {
-    background-color: #084734 !important;
-}
+/* 7. ALOLDALAK SZÖVEGEI */
 .dark-page h1, .dark-page p {
     color: #CEF17B;
     text-align: center;
+    margin-top: 50px;
 }
 
 /* 8. VISSZA GOMB */
@@ -128,13 +121,17 @@ button, .button, .back-circle {
 .back-circle {
     width: 120px;
     height: 120px;
-    background-color: #084734;
-    color: #CEF17B;
+    background-color: #CEF17B;
+    color: #084734;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: transform 0.3s;
+    font-size: 20px;
+    border: none;
+}
     transition: transform 0.3s;
     font-size: 20px;
     border: none;
