@@ -90,23 +90,34 @@ body.dark-page {
     gap: 10px;
 }
 
-/* Sugarak stílusa */
-.ray-segment {
-    background-color: #084734;
-    border-radius: 10px;
-    height: 12px;
+/* SUGARAK STÍLUSA - Most már fekvő helyzetben */
+.ray-group {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Távolság a sorok között */
 }
 
-/* 3 SOROS SUGÁR (Hosszú, Fél, Negyed) */
-.ray-type-3 .s1 { width: 60px; }
-.ray-type-3 .s2 { width: 30px; margin-left: 5px; opacity: 0.8; }
-.ray-type-3 .s3 { width: 15px; margin-left: 10px; opacity: 0.6; }
+.ray-segment {
+    background-color: #084734;
+    border-radius: 20px; /* Lekerekített, mint a rajzon */
+    height: 10px; /* Vastagabb vonalak */
+    transition: all 0.3s;
+}
 
-/* 4 SOROS SUGÁR (Fél, Hosszú, Fél, Negyed) */
-.ray-type-4 .s1 { width: 30px; margin-left: 5px; }
-.ray-type-4 .s2 { width: 60px; }
-.ray-type-4 .s3 { width: 30px; margin-left: 5px; opacity: 0.8; }
-.ray-type-4 .s4 { width: 15px; margin-left: 10px; opacity: 0.6; }
+/* A 3 SOROS LOGIKÁD: Hosszú, Fél, Negyed */
+.ray-type-3 .s1 { width: 80px; }
+.ray-type-3 .s2 { width: 40px; margin-left: 20px; } /* Elcsúsztatva középre */
+.ray-type-3 .s3 { width: 20px; margin-left: 30px; }
+
+/* A 4 SOROS LOGIKÁD: Fél, Hosszú, Fél, Negyed */
+.ray-type-4 .s1 { width: 40px; margin-left: 20px; }
+.ray-type-4 .s2 { width: 80px; }
+.ray-type-4 .s3 { width: 40px; margin-left: 20px; }
+.ray-type-4 .s4 { width: 20px; margin-left: 30px; }
 
 /* Vissza gomb aloldalakon */
 .back-circle {
