@@ -8,7 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden; /* A sugarak kilógása miatt */
+    overflow: hidden;
 }
 
 /* SÖTÉT OLDAL JAVÍTÁSA */
@@ -16,21 +16,22 @@ body.dark-page {
     background-color: #084734 !important;
 }
 
-/* A NAP SZERKEZETE (MINDEN EBBEN VAN) */
+/* A KONSTRUKCIÓ KÖZEPE */
 .sun-container {
     position: relative;
-    width: min(90vw, 500px); /* Rugalmas méret telefonra */
-    height: min(90vw, 500px);
+    width: min(90vw, 600px); /* Kicsit nagyobb, hogy elférjen a 4 gyűrű */
+    height: min(90vw, 600px);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* ----------------------------------------- */
 /* A KÖZÉPSŐ NAGY SÖTÉT KÖR */
 .main-circle {
     position: relative;
-    width: 60%;
-    height: 60%;
+    width: 50%; /* A container 50%-a */
+    height: 50%;
     background-color: #084734;
     border-radius: 50%;
     z-index: 10;
@@ -42,7 +43,7 @@ body.dark-page {
 }
 
 .title {
-    font-size: clamp(30px, 8vw, 60px);
+    font-size: clamp(30px, 6vw, 50px);
     color: #CEF17B;
     margin-bottom: 20px;
 }
@@ -59,7 +60,7 @@ body.dark-page {
     border: none;
     padding: 10px 15px;
     border-radius: 20px;
-    font-size: clamp(12px, 3vw, 16px);
+    font-size: clamp(12px, 2.5vw, 16px);
     cursor: pointer;
     transition: transform 0.2s;
     font-family: 'Bagel Fat One', cursive !important;
@@ -67,65 +68,98 @@ body.dark-page {
 
 .button:hover { transform: scale(1.1); }
 
-/* SUGARAK RENDSZERE */
-.rays-container {
+/* ----------------------------------------- */
+/* A KONCENTRIKUS GYŰRŰK RENDSZERE */
+.rings-container {
     position: absolute;
     width: 100%;
     height: 100%;
-    transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Amikor forog az oldalváltáskor */
-.rays-container.spinning {
+/* Forgás animáció oldalváltáskor */
+.rings-container.spinning {
     transform: rotate(720deg);
 }
 
-.ray-group {
+.ring {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform-origin: 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* SUGARAK STÍLUSA - Most már fekvő helyzetben */
-.ray-group {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform-origin: 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px; /* Távolság a sorok között */
-}
-
-.ray-segment {
-    background-color: #084734;
-    border-radius: 20px; /* Lekerekített, mint a rajzon */
-    height: 10px; /* Vastagabb vonalak */
-    transition: all 0.3s;
-}
-
-/* A 3 SOROS LOGIKÁD: Hosszú, Fél, Negyed */
-.ray-type-3 .s1 { width: 80px; }
-.ray-type-3 .s2 { width: 40px; margin-left: 20px; } /* Elcsúsztatva középre */
-.ray-type-3 .s3 { width: 20px; margin-left: 30px; }
-
-/* A 4 SOROS LOGIKÁD: Fél, Hosszú, Fél, Negyed */
-.ray-type-4 .s1 { width: 40px; margin-left: 20px; }
-.ray-type-4 .s2 { width: 80px; }
-.ray-type-4 .s3 { width: 40px; margin-left: 20px; }
-.ray-type-4 .s4 { width: 20px; margin-left: 30px; }
-
-/* Vissza gomb aloldalakon */
-.back-circle {
-    background-color: #CEF17B;
-    color: #084734;
-    border: none;
-    padding: 20px;
+    transform: translate(-50%, -50%);
     border-radius: 50%;
-    font-family: 'Bagel Fat One', cursive !important;
-    cursor: pointer;
+    background-color: transparent;
+    border: 12px solid #084734; /* A vonalak vastagsága */
+    box-sizing: border-box;
+}
+
+/* A SZAGGATÁS LOGIKÁJA (Masking) */
+/* mask-image-et használunk conic-gradienttel, hogy a kör mentén vágjuk ki a lyukakat */
+.ring {
+    -webkit-mask-image: conic-gradient(
+        from 0deg,
+        black 0%, 
+        black var(--dash-length), 
+        transparent var(--dash-length), 
+        transparent 100%
+    );
+    mask-image: conic-gradient(
+        from 0deg,
+        black 0%, 
+        black var(--dash-length), 
+        transparent var(--dash-length), 
+        transparent 100%
+    );
+    -webkit-mask-size: 100%;
+    mask-size: 100%;
+}
+
+/* ----------------------------------------- */
+/* AZ EGYES GYŰRŰK BEÁLLÍTÁSAI (MÉRET, SORMINTA, ELTOLÁS) */
+
+/* 1. GYŰRŰ (Legbelső, HOSSZÚ) */
+/* A sorminta: Hosszú vonal, Hosszú szünet */
+.ring-1 {
+    width: 65%; /* Kicsit nagyobb, mint a belső kör */
+    height: 65%;
+    --dash-length: 30deg; /* Hosszú vonal */
+    -webkit-mask-size: calc(100% / (360 / 60)); /* 6 ismétlődés */
+    mask-size: calc(100% / (360 / 60));
+}
+
+/* 2. GYŰRŰ (KÖZÉP-HOSSZÚ) */
+/* A sorminta: Közép-Hosszú vonal, Közép-Hosszú szünet */
+/* ELTOLVA: A szünet az 1. gyűrű vonala alá essen */
+.ring-2 {
+    width: 78%;
+    height: 78%;
+    opacity: 0.9;
+    --dash-length: 15deg; /* Közép-Hosszú vonal */
+    transform: translate(-50%, -50%) rotate(30deg); /* 30deg eltolás */
+    -webkit-mask-size: calc(100% / (360 / 30)); /* 12 ismétlődés */
+    mask-size: calc(100% / (360 / 30));
+}
+
+/* 3. GYŰRŰ (RÖVID) */
+/* A sorminta: Rövid vonal, Rövid szünet */
+.ring-3 {
+    width: 90%;
+    height: 90%;
+    opacity: 0.8;
+    --dash-length: 7.5deg; /* Rövid vonal */
+    -webkit-mask-size: calc(100% / (360 / 15)); /* 24 ismétlődés */
+    mask-size: calc(100% / (360 / 15));
+}
+
+/* 4. GYŰRŰ (Legkülső, LEGRÖVIDEBB) */
+/* A sorminta: Legrövidebb vonal, Legrövidebb szünet */
+/* ELTOLVA a 3. gyűrűhöz képest */
+.ring-4 {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    --dash-length: 3.75deg; /* Legrövidebb vonal */
+    transform: translate(-50%, -50%) rotate(7.5deg); /* Eltolás */
+    -webkit-mask-size: calc(100% / (360 / 7.5)); /* 48 ismétlődés */
+    mask-size: calc(100% / (360 / 7.5));
 }
