@@ -10,8 +10,8 @@
 <body>
 
     <div class="sun-container">
-        <div class="rays-container" id="rays">
-            </div>
+        <div class="rings-container" id="rings">
+            <div class="ring ring-1"></div> <div class="ring ring-2"></div> <div class="ring ring-3"></div> <div class="ring ring-4"></div> </div>
 
         <div class="main-circle">
             <div class="title">SZUDZSI</div>
@@ -23,35 +23,10 @@
     </div>
 
     <script>
-        // Sugarak legenerálása
-        const raysContainer = document.getElementById('rays');
-        const rayCount = 14; // Kicsit sűrűbb, hogy jobban nézzen ki
-
-        for (let i = 0; i < rayCount; i++) {
-            const angle = (i * 360) / rayCount;
-            const group = document.createElement('div');
-            
-            // Váltakozó 3 és 4 soros típus
-            const isType3 = i % 2 === 0;
-            group.className = `ray-group ${isType3 ? 'ray-type-3' : 'ray-type-4'}`;
-            
-            // Forgatás és kitolás a kör szélére
-            // Itt a rotate(angle) a csoport helyét adja meg, 
-            // a belső eltolás pedig "elfekteti" a vonalakat
-            group.style.transform = `rotate(${angle}deg) translate(min(25vw, 150px)) rotate(90deg)`;
-
-            const lines = isType3 ? 3 : 4;
-            for (let j = 1; j <= lines; j++) {
-                const segment = document.createElement('div');
-                segment.className = `ray-segment s${j}`;
-                group.appendChild(segment);
-            }
-            raysContainer.appendChild(group);
-        }
-
         // Átmenet animáció
         function startTransition(url) {
-            document.getElementById('rays').classList.add('spinning');
+            // A teljes gyűrűs rendszert forgatjuk
+            document.getElementById('rings').classList.add('spinning');
             setTimeout(() => {
                 window.location.href = url;
             }, 1500); // 1.5 másodperc forgás után vált
