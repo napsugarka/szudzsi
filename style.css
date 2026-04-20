@@ -1,6 +1,6 @@
 /* ALAPOK */
 body {
-    background-color: #E5FCCD;
+    background-color: #E5FCCD; /* Az eredeti világos háttérszíned */
     margin: 0;
     padding: 0;
     font-family: 'Bagel Fat One', cursive;
@@ -11,65 +11,85 @@ body {
     overflow: hidden;
 }
 
-/* SÖTÉT OLDAL JAVÍTÁSA */
+/* SÖTÉT OLDAL - Az aloldalakhoz */
 body.dark-page {
     background-color: #084734 !important;
 }
 
-/* A KONSTRUKCIÓ KÖZEPE */
+/* A KONSTRUKCIÓ */
 .sun-container {
     position: relative;
-    width: min(90vw, 600px); /* Kicsit nagyobb, hogy elférjen a 4 gyűrű */
-    height: min(90vw, 600px);
+    width: min(95vw, 700px);
+    height: min(95vw, 700px);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* ----------------------------------------- */
-/* A KÖZÉPSŐ NAGY SÖTÉT KÖR */
+/* A NAGY SÖTÉTZÖLD KÖR (Az arc) */
 .main-circle {
     position: relative;
-    width: 50%; /* A container 50%-a */
-    height: 50%;
+    width: 65%; /* Nagyobbra vettem az arányokat */
+    height: 65%;
     background-color: #084734;
     border-radius: 50%;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .title {
-    font-size: clamp(30px, 6vw, 50px);
+    font-size: clamp(40px, 8vw, 70px);
     color: #CEF17B;
-    margin-bottom: 20px;
+    margin-top: 60px;
+    z-index: 15;
 }
 
-/* GOMBOK A KÖRÖN BELÜL */
-.button-wrapper {
+/* A VILÁGOSZÖLD SZÁJ (Félkör) */
+.mouth-arc {
+    position: absolute;
+    bottom: 40px;
+    width: 70%;
+    height: 35%;
+    background-color: #CEF17B;
+    border-radius: 0 0 150px 150px; /* Félkör alak */
     display: flex;
-    gap: 15px;
+    justify-content: center;
+    gap: 30px;
+    padding-top: 10px;
+}
+
+/* GOMBOK KERETE (A két fog) */
+.tooth-container {
+    width: 80px;
+    height: 140px;
+    border: 3px solid #084734;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    box-sizing: border-box;
 }
 
 .button {
-    background-color: #CEF17B;
-    color: #084734;
+    width: 60px;
+    height: 60px;
+    background-color: #084734;
+    color: #CEF17B;
+    border-radius: 50%;
     border: none;
-    padding: 10px 15px;
-    border-radius: 20px;
-    font-size: clamp(12px, 2.5vw, 16px);
     cursor: pointer;
-    transition: transform 0.2s;
     font-family: 'Bagel Fat One', cursive !important;
+    font-size: 10px;
+    transition: transform 0.2s;
 }
 
 .button:hover { transform: scale(1.1); }
 
-/* ----------------------------------------- */
-/* A KONCENTRIKUS GYŰRŰK RENDSZERE */
+/* SUGARAK (Gyűrűk) */
 .rings-container {
     position: absolute;
     width: 100%;
@@ -77,10 +97,7 @@ body.dark-page {
     transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Forgás animáció oldalváltáskor */
-.rings-container.spinning {
-    transform: rotate(720deg);
-}
+.rings-container.spinning { transform: rotate(720deg); }
 
 .ring {
     position: absolute;
@@ -88,78 +105,14 @@ body.dark-page {
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background-color: transparent;
-    border: 12px solid #084734; /* A vonalak vastagsága */
+    border: 12px solid #084734;
     box-sizing: border-box;
+    -webkit-mask-image: conic-gradient(from 0deg, black 0%, black var(--dash), transparent var(--dash), transparent 100%);
+    mask-image: conic-gradient(from 0deg, black 0%, black var(--dash), transparent var(--dash), transparent 100%);
 }
 
-/* A SZAGGATÁS LOGIKÁJA (Masking) */
-/* mask-image-et használunk conic-gradienttel, hogy a kör mentén vágjuk ki a lyukakat */
-.ring {
-    -webkit-mask-image: conic-gradient(
-        from 0deg,
-        black 0%, 
-        black var(--dash-length), 
-        transparent var(--dash-length), 
-        transparent 100%
-    );
-    mask-image: conic-gradient(
-        from 0deg,
-        black 0%, 
-        black var(--dash-length), 
-        transparent var(--dash-length), 
-        transparent 100%
-    );
-    -webkit-mask-size: 100%;
-    mask-size: 100%;
-}
-
-/* ----------------------------------------- */
-/* AZ EGYES GYŰRŰK BEÁLLÍTÁSAI (MÉRET, SORMINTA, ELTOLÁS) */
-
-/* 1. GYŰRŰ (Legbelső, HOSSZÚ) */
-/* A sorminta: Hosszú vonal, Hosszú szünet */
-.ring-1 {
-    width: 65%; /* Kicsit nagyobb, mint a belső kör */
-    height: 65%;
-    --dash-length: 30deg; /* Hosszú vonal */
-    -webkit-mask-size: calc(100% / (360 / 60)); /* 6 ismétlődés */
-    mask-size: calc(100% / (360 / 60));
-}
-
-/* 2. GYŰRŰ (KÖZÉP-HOSSZÚ) */
-/* A sorminta: Közép-Hosszú vonal, Közép-Hosszú szünet */
-/* ELTOLVA: A szünet az 1. gyűrű vonala alá essen */
-.ring-2 {
-    width: 78%;
-    height: 78%;
-    opacity: 0.9;
-    --dash-length: 15deg; /* Közép-Hosszú vonal */
-    transform: translate(-50%, -50%) rotate(30deg); /* 30deg eltolás */
-    -webkit-mask-size: calc(100% / (360 / 30)); /* 12 ismétlődés */
-    mask-size: calc(100% / (360 / 30));
-}
-
-/* 3. GYŰRŰ (RÖVID) */
-/* A sorminta: Rövid vonal, Rövid szünet */
-.ring-3 {
-    width: 90%;
-    height: 90%;
-    opacity: 0.8;
-    --dash-length: 7.5deg; /* Rövid vonal */
-    -webkit-mask-size: calc(100% / (360 / 15)); /* 24 ismétlődés */
-    mask-size: calc(100% / (360 / 15));
-}
-
-/* 4. GYŰRŰ (Legkülső, LEGRÖVIDEBB) */
-/* A sorminta: Legrövidebb vonal, Legrövidebb szünet */
-/* ELTOLVA a 3. gyűrűhöz képest */
-.ring-4 {
-    width: 100%;
-    height: 100%;
-    opacity: 0.6;
-    --dash-length: 3.75deg; /* Legrövidebb vonal */
-    transform: translate(-50%, -50%) rotate(7.5deg); /* Eltolás */
-    -webkit-mask-size: calc(100% / (360 / 7.5)); /* 48 ismétlődés */
-    mask-size: calc(100% / (360 / 7.5));
-}
+/* 4 gyűrű az eltolással és különböző hosszal */
+.ring-1 { width: 75%; height: 75%; --dash: 20deg; -webkit-mask-size: 16.6%; mask-size: 16.6%; }
+.ring-2 { width: 83%; height: 83%; --dash: 10deg; -webkit-mask-size: 8.3%; mask-size: 8.3%; transform: translate(-50%, -50%) rotate(15deg); }
+.ring-3 { width: 91%; height: 91%; --dash: 5deg; -webkit-mask-size: 4.1%; mask-size: 4.1%; }
+.ring-4 { width: 100%; height: 100%; --dash: 2deg; -webkit-mask-size: 2%; mask-size: 2%; transform: translate(-50%, -50%) rotate(5deg); }
