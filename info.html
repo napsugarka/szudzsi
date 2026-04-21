@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SZUDZSI - Rólam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-page"> 
+    <div class="transition-overlay overlay-to-light" id="overlay"></div>
 
+    <div style="text-align: center; margin-top: 50px;">
+        <h1 style="color: #CEF17B; font-size: 60px;">Rólam</h1>
+        
+        <p style="color: #CEF17B;">Hamarosan...</p>
+
+        <div class="back-btn-container">
+            <button class="back-circle" onclick="pageTransition('index.html')">VISSZA</button>
+        </div>
+    </div>
+
+    <script>
+        function pageTransition(url) {
+            const overlay = document.getElementById('overlay');
+            overlay.classList.add('active');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 800);
+        }
+    </script>
+
+</body>
+</html>
