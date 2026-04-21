@@ -30,15 +30,12 @@
 
     <script>
         const raysContainer = document.getElementById('rays');
-        // 8 irányba generáljuk a sugarakat
         for (let i = 0; i < 8; i++) {
             const angle = i * 45;
             const group = document.createElement('div');
             group.className = 'ray-group';
-            
-            // A lényeg: translate(220px) kitolja őket a kör szélére
-            // A rotate(90deg) elfekteti őket az ívre
-            group.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translate(220px) rotate(90deg)`;
+            // A translate(260px) kitolja a sugarakat az arc szélén túlra
+            group.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translate(260px) rotate(90deg)`;
             
             for (let j = 1; j <= 4; j++) {
                 const segment = document.createElement('div');
