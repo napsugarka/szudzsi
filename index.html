@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SZUDZSI</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,13 +12,12 @@
     <div class="transition-overlay" id="overlay"></div>
 
     <div class="sun-container">
-        <div class="rays-container" id="rays">
-            </div>
+        <div class="rays-container" id="rays"></div>
 
         <div class="main-circle">
             <div class="title">SZUDZSI</div>
             
-            <div class="mouth-wrapper">
+            <div class="mouth-arc">
                 <div class="tooth-container">
                     <button class="button" onclick="startTransition('rolam.html')">RÓLAM</button>
                 </div>
@@ -32,21 +29,16 @@
     </div>
 
     <script>
-        // SUGARAK GENERÁLÁSA (8 darab körbe)
+        // Sugarak generálása a körpályán
         const raysContainer = document.getElementById('rays');
-        const rayCount = 8; // Pontosan 8 köteg, mint a rajzon
-
-        for (let i = 0; i < rayCount; i++) {
-            const angle = (i * 360) / rayCount;
+        for (let i = 0; i < 8; i++) {
+            const angle = i * 45;
             const group = document.createElement('div');
             group.className = 'ray-group';
             
-            // Forgatás és kitolás a kör szélére
-            // Itt a rotate(angle) a csoport helyét adja meg, 
-            // a belső eltolás pedig "elfekteti" a vonalakat (90deg)
-            group.style.transform = `rotate(${angle}deg) translate(min(28vw, 200px)) rotate(90deg)`;
-
-            // A 4 soros sorminta hozzáadása
+            // Fix távolságra (210px) toljuk ki a sugarakat a köríven
+            group.style.transform = `rotate(${angle}deg) translate(210px) rotate(90deg)`;
+            
             for (let j = 1; j <= 4; j++) {
                 const segment = document.createElement('div');
                 segment.className = `ray-segment s${j}`;
@@ -55,26 +47,24 @@
             raysContainer.appendChild(group);
         }
 
-        // ÁTMENET ANIMÁCIÓ: Forgás + Nagyítás + Kitöltés
+        // Spirális tekerés és oldalváltás
         function startTransition(url) {
             const rays = document.getElementById('rays');
             const overlay = document.getElementById('overlay');
 
-            // 1. lépés: Forgás és enyhe nagyítás
+            // Tekerés indítása
             rays.classList.add('spinning');
 
-            // 2. lépés (egy kis késleltetéssel): Kitöltés és kitágulás
+            // Kitöltés indítása egy kis késleltetéssel
             setTimeout(() => {
-                rays.classList.add('fill-screen');
-                overlay.classList.add('active'); // A sötétzöld kör betölti a képernyőt
-            }, 300); // 0.3 mp után kezdődik a tágulás
+                overlay.classList.add('active');
+            }, 400);
 
-            // 3. lépés: Oldalváltás
+            // Tényleges ugrás az új oldalra
             setTimeout(() => {
                 window.location.href = url;
-            }, 1200); // 1.2 mp után vált
+            }, 1500);
         }
     </script>
 </body>
-</html>
 </html>
