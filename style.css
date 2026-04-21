@@ -1,6 +1,12 @@
-/* ALAPOK */
+/* ALAPBEÁLLÍTÁSOK ÉS SZÍNEK */
+:root {
+    --color-bg: #D4ED8E;       /* Az eredeti világoszöld háttér */
+    --color-main: #0E5E3D;     /* Az eredeti sötétzöld szín */
+    --color-accent: #D4ED8E;   /* A szövegek és gombok színe sötét alapon */
+}
+
 body {
-    background-color: #E5FCCD; /* Az eredeti világos háttérszíned */
+    background-color: var(--color-bg);
     margin: 0;
     padding: 0;
     font-family: 'Bagel Fat One', cursive;
@@ -8,30 +14,26 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden;
+    overflow: hidden; /* A sugarak elforgása miatt */
 }
 
-/* SÖTÉT OLDAL - Az aloldalakhoz */
-body.dark-page {
-    background-color: #084734 !important;
-}
-
-/* A KONSTRUKCIÓ */
+/* KÖZPONTI KONSTRUKCIÓ */
 .sun-container {
     position: relative;
-    width: min(95vw, 700px);
-    height: min(95vw, 700px);
+    width: min(90vw, 700px);
+    height: min(90vw, 700px);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+/* ----------------------------------------- */
 /* A NAGY SÖTÉTZÖLD KÖR (Az arc) */
 .main-circle {
     position: relative;
-    width: 65%; /* Nagyobbra vettem az arányokat */
-    height: 65%;
-    background-color: #084734;
+    width: 60%;
+    height: 60%;
+    background-color: var(--color-main);
     border-radius: 50%;
     z-index: 10;
     display: flex;
@@ -40,79 +42,111 @@ body.dark-page {
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
+/* SZUDZSI FELIRAT */
 .title {
     font-size: clamp(40px, 8vw, 70px);
-    color: #CEF17B;
-    margin-top: 60px;
+    color: var(--color-accent);
+    margin-top: 60px; /* Lejjebb toltam, mint a rajzon */
     z-index: 15;
 }
 
-/* A VILÁGOSZÖLD SZÁJ (Félkör) */
-.mouth-arc {
+/* VILÁGOSZÖLD SZÁJ ÉS FOGAK (Gombok) */
+.mouth-wrapper {
     position: absolute;
-    bottom: 40px;
-    width: 70%;
-    height: 35%;
-    background-color: #CEF17B;
-    border-radius: 0 0 150px 150px; /* Félkör alak */
+    bottom: 50px;
+    width: 60%;
+    height: 30%;
     display: flex;
     justify-content: center;
     gap: 30px;
-    padding-top: 10px;
 }
 
-/* GOMBOK KERETE (A két fog) */
 .tooth-container {
     width: 80px;
-    height: 140px;
-    border: 3px solid #084734;
+    height: 120px;
+    border: 3px solid var(--color-main);
     border-radius: 40px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
     padding-top: 10px;
     box-sizing: border-box;
+    background-color: var(--color-accent); /* A száj világoszöldje */
 }
 
 .button {
     width: 60px;
     height: 60px;
-    background-color: #084734;
-    color: #CEF17B;
+    background-color: var(--color-main);
+    color: var(--color-accent);
     border-radius: 50%;
     border: none;
     cursor: pointer;
     font-family: 'Bagel Fat One', cursive !important;
     font-size: 10px;
+    text-transform: uppercase;
     transition: transform 0.2s;
 }
 
 .button:hover { transform: scale(1.1); }
 
-/* SUGARAK (Gyűrűk) */
-.rings-container {
+/* ----------------------------------------- */
+/* A SUGARAK RENDSZERE */
+.rays-container {
     position: absolute;
     width: 100%;
     height: 100%;
-    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.rings-container.spinning { transform: rotate(720deg); }
+/* Animációhoz szükséges osztályok */
+.rays-container.spinning { transform: rotate(180deg) scale(2); opacity: 0.8; }
+.rays-container.fill-screen { transform: rotate(360deg) scale(15); opacity: 0; }
 
-.ring {
+.ray-group {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 12px solid #084734;
-    box-sizing: border-box;
-    -webkit-mask-image: conic-gradient(from 0deg, black 0%, black var(--dash), transparent var(--dash), transparent 100%);
-    mask-image: conic-gradient(from 0deg, black 0%, black var(--dash), transparent var(--dash), transparent 100%);
+    transform-origin: 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Távolság a vonalak között */
 }
 
-/* 4 gyűrű az eltolással és különböző hosszal */
-.ring-1 { width: 75%; height: 75%; --dash: 20deg; -webkit-mask-size: 16.6%; mask-size: 16.6%; }
-.ring-2 { width: 83%; height: 83%; --dash: 10deg; -webkit-mask-size: 8.3%; mask-size: 8.3%; transform: translate(-50%, -50%) rotate(15deg); }
-.ring-3 { width: 91%; height: 91%; --dash: 5deg; -webkit-mask-size: 4.1%; mask-size: 4.1%; }
-.ring-4 { width: 100%; height: 100%; --dash: 2deg; -webkit-mask-size: 2%; mask-size: 2%; transform: translate(-50%, -50%) rotate(5deg); }
+.ray-segment {
+    background-color: var(--color-main);
+    border-radius: 20px; /* Lekerekített, mint a rajzon */
+    height: 10px; /* Vonalvastagság */
+    transition: all 0.3s;
+}
+
+/* A 4 SOROS SORMINTA: Rövid, Hosszú, Fél, Negyed */
+/* Itt a sorminta a csoporton belüli elrendezés: */
+.ray-group .s1 { width: 30px; margin-left: 25px; }
+.ray-group .s2 { width: 80px; }
+.ray-group .s3 { width: 40px; margin-left: 20px; }
+.ray-group .s4 { width: 20px; margin-left: 30px; }
+
+/* ----------------------------------------- */
+/* KITÖLTŐ ÁTMENET RÉTEG (Ezt használjuk az animációhoz) */
+.transition-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    pointer-events: none;
+    background-color: var(--color-main); /* Sötétzölddel töltjük ki */
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1), height 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-overlay.active {
+    width: 300vw; /* Hatalmasra tágul */
+    height: 300vw;
+}
+
+/* SÖTÉT OLDAL - Az aloldalakhoz (Rólam, Képek) */
+body.dark-page { background-color: var(--color-main) !important; }
+body.dark-page .back-circle { background-color: var(--color-accent); color: var(--color-main); }
