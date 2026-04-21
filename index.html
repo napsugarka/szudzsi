@@ -2,66 +2,47 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SZUDZSI</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="sun-container">
-        <svg class="rays-svg" id="raysSvg" viewBox="0 0 800 800"></svg>
+    <div class="transition-overlay overlay-to-dark" id="overlay"></div>
 
-        <div class="main-circle">
-            <div class="title">SZUDZSI</div>
-            <div class="mouth-arc">
-                <div class="tooth-container">
-                    <button class="button" onclick="location.href='rolam.html'">RÓLAM</button>
-                </div>
-                <div class="tooth-container">
-                    <button class="button" onclick="location.href='kepek.html'">KÉPEK</button>
-                </div>
+    <div class="outer-circle">
+        
+        <div class="title">SZUDZSI</div>
+        
+        <div class="header-arc">
+            
+            <div class="button-container">
+                <div class="button" onclick="pageTransition('kepek.html')">KÉPEK</div>
             </div>
+
+            <div class="button-container">
+                <div class="button" onclick="pageTransition('rolam.html')">RÓLAM</div>
+            </div>
+
+            <div class="button-container">
+                <div class="button" onclick="pageTransition('blog.html')">BLOG</div>
+            </div>
+            
         </div>
     </div>
 
     <script>
-        const svg = document.getElementById('raysSvg');
-        const centerX = 400;
-        const centerY = 400;
-        const rayCount = 8;
-        
-        // A sugarak távolsága (sugarai) a középponttól
-        const radiuses = [220, 260, 300, 340]; 
-
-        for (let i = 0; i < rayCount; i++) {
-            const baseAngle = i * 45;
-            const linesInGroup = (i % 2 === 0) ? 4 : 3;
-
-            for (let j = 0; j < linesInGroup; j++) {
-                const r = radiuses[j];
-                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                
-                // Szög-tartomány a görbének (mekkora legyen egy sugár)
-                const arcLength = 25; 
-                // Kis eltolás a "tégla" hatáshoz
-                const offset = (j % 2 === 0) ? 0 : 10;
-                
-                const startAngle = (baseAngle - arcLength / 2 + offset) * (Math.PI / 180);
-                const endAngle = (baseAngle + arcLength / 2 + offset) * (Math.PI / 180);
-
-                const x1 = centerX + r * Math.cos(startAngle);
-                const y1 = centerY + r * Math.sin(startAngle);
-                const x2 = centerX + r * Math.cos(endAngle);
-                const y2 = centerY + r * Math.sin(endAngle);
-
-                // SVG Arc parancs: rajzol egy ívet két pont között
-                const d = `M ${x1} ${y1} A ${r} ${r} 0 0 1 ${x2} ${y2}`;
-                
-                path.setAttribute("d", d);
-                path.setAttribute("class", "ray-path");
-                svg.appendChild(path);
-            }
+        function pageTransition(url) {
+            const overlay = document.getElementById('overlay');
+            overlay.classList.add('active');
+            setTimeout(() => {
+                window.location.href = url;
+            }, 800);
         }
     </script>
+
 </body>
 </html>
