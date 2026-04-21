@@ -1,14 +1,12 @@
-/* ALAPBEÁLLÍTÁSOK */
 :root {
-    --color-bg: #D4ED8E;       /* Világoszöld háttér */
-    --color-main: #0E5E3D;     /* Sötétzöld téma */
-    --color-accent: #D4ED8E;   /* Szöveg és gombok színe sötét alapon */
+    --color-bg: #D4ED8E;
+    --color-main: #0E5E3D;
+    --color-accent: #D4ED8E;
 }
 
 body {
     background-color: var(--color-bg);
     margin: 0;
-    padding: 0;
     font-family: 'Bagel Fat One', cursive;
     display: flex;
     justify-content: center;
@@ -17,7 +15,7 @@ body {
     overflow: hidden;
 }
 
-/* KÖZPONTI EGYSÉG */
+/* A tároló, ami összefogja a sugarakat és az arcot */
 .sun-container {
     position: relative;
     width: 600px;
@@ -27,58 +25,57 @@ body {
     align-items: center;
 }
 
-/* A NAGY SÖTÉTZÖLD KÖR (ARC) */
+/* NAGY SÖTÉT KÖR */
 .main-circle {
     position: relative;
     width: 350px;
     height: 350px;
     background-color: var(--color-main);
     border-radius: 50%;
-    z-index: 10;
+    z-index: 10; /* Ez legyen a sugarak felett */
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden; /* Ez biztosítja a félkör alakú szájat */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: hidden; /* Ez vágja le a szájat */
 }
 
 .title {
     font-size: 55px;
     color: var(--color-accent);
     margin-top: 50px;
-    z-index: 15;
+    pointer-events: none;
 }
 
-/* A VILÁGOSZÖLD SZÁJ (Félkör az arc alján) */
+/* SZÁJ (Félkör az arc alján) */
 .mouth-arc {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 50%; /* Az arc alsó fele */
+    height: 150px; /* Fix magasság a szájnak */
     background-color: var(--color-accent);
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Egymás mellé teszi a fogakat */
     align-items: flex-start;
-    gap: 20px;
-    padding-top: 25px;
+    gap: 30px; /* Távolság a két fog között */
+    padding-top: 20px;
 }
 
-/* FOGAK (A gombok kerete) */
+/* FOGAK (Gomb keretek) */
 .tooth-container {
-    width: 75px;
+    width: 80px;
     height: 110px;
-    border: 3px solid var(--color-main);
-    border-radius: 35px;
+    border: 3.5px solid var(--color-main);
+    border-radius: 40px;
+    background-color: var(--color-accent);
     display: flex;
     justify-content: center;
     padding-top: 10px;
     box-sizing: border-box;
-    background-color: var(--color-accent);
 }
 
 .button {
-    width: 58px;
-    height: 58px;
+    width: 60px;
+    height: 60px;
     background-color: var(--color-main);
     color: var(--color-accent);
     border-radius: 50%;
@@ -86,26 +83,24 @@ body {
     cursor: pointer;
     font-family: 'Bagel Fat One', cursive !important;
     font-size: 10px;
-    transition: transform 0.2s;
 }
 
-.button:hover { transform: scale(1.1); }
-
-/* SUGARAK */
+/* SUGARAK STÍLUSA */
 .rays-container {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    /* Gomb-szerű tekerés animáció beállítása */
-    transition: transform 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    z-index: 1; /* A nagy kör mögé */
+    transition: transform 1.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .ray-group {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform-origin: 0 0;
+    transform-origin: center center;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -117,13 +112,13 @@ body {
     height: 12px;
 }
 
-/* Sorminta méretek */
+/* Egyedi sorminta méretek */
 .s1 { width: 40px; margin-left: 30px; }
 .s2 { width: 100px; }
 .s3 { width: 60px; margin-left: 20px; }
 .s4 { width: 30px; margin-left: 35px; }
 
-/* ANIMÁCIÓS ÁLLAPOTOK */
+/* ANIMÁCIÓ */
 .rays-container.spinning { 
     transform: rotate(360deg) scale(15); 
 }
@@ -140,13 +135,4 @@ body {
     background-color: var(--color-main);
     transition: width 1.2s ease-in, height 1.2s ease-in;
 }
-
-.transition-overlay.active { 
-    width: 400vw; 
-    height: 400vw; 
-}
-
-/* SÖTÉT OLDAL STÍLUS (Aloldalakhoz) */
-body.dark-page {
-    background-color: var(--color-main) !important;
-}
+.transition-overlay.active { width: 400vw; height: 400vw; }
