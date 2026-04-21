@@ -59,7 +59,7 @@ button, .button, .back-circle {
 /* 4. VILÁGOSZÖLD MENÜ FÉLKÖR */
 .header-arc {
     position: absolute;
-    top: 300px; 
+    top: 250px; 
     width: 550px;
     height: 275px;
     background-color: #CEF17B;
@@ -74,8 +74,8 @@ button, .button, .back-circle {
 /* 5. GOMBOK KÖRÜLI KERETEK - Felülről lógó téglalapok */
 .button-container {
     width: 100px;
-    height: 150px; /* Hosszúság lefelé */
-    border: 7px solid #084734;
+    height: 180px; /* Hosszúság lefelé */
+    border: 5px solid #084734;
     border-radius: 50px;
     display: flex;
     flex-direction: column;
