@@ -30,7 +30,7 @@ button, .button, .back-circle {
     transform: translate(-50%, -50%);
     z-index: 9999;
     pointer-events: none;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: width 0.75s cubic-bezier(0.4, 0, 0.2, 1), height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .overlay-to-dark { background-color: #084734; }
 .overlay-to-light { background-color: #CEF17B; }
