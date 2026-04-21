@@ -60,10 +60,10 @@ button, .button, .back-circle {
 .header-arc {
     position: absolute;
     top: 260px; 
-    width: 550px;
-    height: 275px;
+    width: 500px;
+    height: 250px;
     background-color: #CEF17B;
-    border-radius: 0 0 275px 275px;
+    border-radius: 0 0 250px 250px;
     /* Gombok vízszintes elrendezése */
     display: flex;
     justify-content: center;
