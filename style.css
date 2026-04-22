@@ -147,7 +147,6 @@ button, .button, .back-circle {
     font-size: 18px; /* Itt állíthatod a méretét */
     line-height: 1.5; /* Hogy kényelmesebb legyen olvasni */
     text-transform: none; /* Kikapcsolja a csupa nagybetűt, ha a body-n az van */
-    text-align: left;
     text-align: justify;
 }
 /* Az egyedi szövegen belüli linkek stílusa */
