@@ -3,60 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SZUDZSI - Képek</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&display=swap" rel="stylesheet">
+    <title>SZUDZSI | Képek</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark-page"> 
-    <div class="transition-overlay overlay-to-light" id="overlay"></div>
+<body class="dark-page">
 
-    <div style="text-align: center; margin-top: 50px;">
-        <h1 style="color: #CEF17B; font-size: 60px;">KÉPEK</h1>
-        
-       <div class="dark-page">
+    <div class="content-wrapper">
+        <h1 class="title">KÉPEK</h1>
 
-    <div class="gallery-container">
-        <div class="gallery-item">
-            <img src="en.png" alt="Projekt 1">
-            <div class="overlay">
-                <div class="overlay-text special-font">
-                    <h3>Én</h3>
-                    <p>Ligatúra plakát.</p>
+        <div class="gallery-container">
+            
+            <div class="gallery-item">
+                <img src="en.png" alt="Projekt 1">
+                <div class="overlay">
+                    <div class="overlay-text special-font">
+                        <h3>Én</h3>
+                        <p>Ligatúra plakát.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-
+            
         <div class="gallery-item">
-            <img src="kep2.jpg" alt="Projekt 2">
-            <div class="overlay">
-                <div class="overlay-text special-font">
-                    <h3>Illusztráció</h3>
-                    <p>Digitális rajz, 2024.</p>
+                <img src="te.png" alt="Projekt 4">
+                <div class="overlay">
+                    <div class="overlay-text special-font">
+                        <h3>Te</h3>
+                        <p>Ligatúra plakát.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        </div>
+            
+            <div class="gallery-item">
+                <img src="mi.png" alt="Projekt 2">
+                <div class="overlay">
+                    <div class="overlay-text special-font">
+                        <h3>Mi</h3>
+                        <p>Ligatúra plakát</p>
+                    </div>
+                </div>
+            </div>
 
-    <div class="back-btn-container">
-        <button class="back-circle" onclick="history.back()">VISSZA</button>
-    </div>
-</div>
+            <div class="gallery-item">
+                <img src="ti.png" alt="Projekt 5">
+                <div class="overlay">
+                    <div class="overlay-text special-font">
+                        <h3>Ti</h3>
+                        <p>Ligatúra plakát.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="ok.png" alt="Projekt 3">
+                <div class="overlay">
+                    <div class="overlay-text special-font">
+                        <h3>Ők</h3>
+                        <p>Ligatúra plakát.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
 
         <div class="back-btn-container">
-            <button class="back-circle" onclick="pageTransition('index.html')">VISSZA</button>
+            <button class="back-circle" onclick="window.location.href='index.html'">VISSZA</button>
         </div>
     </div>
-
-    <script>
-        function pageTransition(url) {
-            const overlay = document.getElementById('overlay');
-            overlay.classList.add('active');
-            setTimeout(() => {
-                window.location.href = url;
-            }, 800);
-        }
-    </script>
 
 </body>
 </html>
