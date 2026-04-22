@@ -64,27 +64,30 @@ button, .button, .back-circle {
     height: 250px;
     background-color: #CEF17B;
     border-radius: 0 0 250px 250px;
-    /* Gombok vízszintes elrendezése */
     display: flex;
     justify-content: center;
-    gap: 40px; /* Távolság a gombok között */
-    padding-top: 20px; /* 20px távolság a tetejétől */
+    align-items: flex-end; /* Alulra igazítjuk a gombokat */
+    gap: 40px;
+    padding-bottom: 30px; /* Távolság a félkör aljától */
+    box-sizing: border-box;
 }
 
-/* 5. GOMBOK KÖRÜLI KERETEK - Felülről lógó téglalapok */
+/* 5. GOMBOK KÖRÜLI KERETEK - Felfelé nyúló "U" alakok */
 .button-container {
     width: 100px;
-    height: 180px; /* Hosszúság lefelé */
+    height: 180px;
     border: 5px solid #084734;
-    border-radius: 50px;
+    /* Csak az alját és az oldalait kerekítjük le, a teteje nyitott marad vagy máshogy kerek */
+    /* Ahhoz, hogy felfelé álljon a "U", az alját kerekítjük: */
+    border-radius: 0 0 50px 50px; 
     display: flex;
     flex-direction: column;
+    justify-content: flex-end; /* A tartalom (gomb) az aljára kerül */
     align-items: center;
-    padding-top: 10px;
+    padding-bottom: 10px; /* Távolság a keret aljától */
     box-sizing: border-box;
     background-color: transparent;
 }
-
 /* 6. GOMBOK STÍLUSA */
 .button {
     width: 80px;
