@@ -220,6 +220,36 @@ button, .button, .back-circle {
 .gallery-item:hover img {
     transform: scale(1.05); /* Enyhe közelítés */
 }
+/* --- MOBILOS NÉZET BEÁLLÍTÁSA --- */
+
+@media (max-width: 768px) {
+    /* A főcím kisebb legyen, hogy ne törjön több sorba csúnyán */
+    h1 {
+        font-size: 40px !important; 
+        margin-top: 20px;
+    }
+
+    /* A gombok tárolója ne legyen olyan széles */
+    .button-container {
+        width: 90%;
+        gap: 15px; /* Kisebb távolság a gombok között */
+    }
+
+    /* A gombok méretét csökkentjük, hogy elférjenek egymás mellett vagy alatt */
+    .nav-btn {
+        padding: 15px 25px;
+        font-size: 16px;
+        width: 100%; /* Mobilon a gombok egymás alatt lesznek, teljes szélességben */
+        max-width: 250px;
+    }
+
+    /* A kör alakú vissza gombot is kicsit kisebbre vesszük */
+    .back-circle {
+        width: 80px;
+        height: 80px;
+        font-size: 14px;
+    }
+}
 
 .overlay-text h3 {
     margin: 0 0 10px 0;
