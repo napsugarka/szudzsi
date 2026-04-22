@@ -142,3 +142,14 @@ button, .button, .back-circle {
     line-height: 1.5; /* Hogy kényelmesebb legyen olvasni */
     text-transform: none; /* Kikapcsolja a csupa nagybetűt, ha a body-n az van */
 }
+/* Az egyedi szövegen belüli linkek stílusa */
+.egyedi-szoveg a {
+    color: #CEF17B; /* Ugyanolyan világoszöld, mint a szöveg */
+    text-decoration: underline; /* Maradjon aláhúzva, hogy látsszon: kattintható */
+    font-weight: bold;
+    transition: opacity 0.3s;
+}
+
+.egyedi-szoveg a:hover {
+    opacity: 0.7; /* Ha rásiklik az egér, kicsit elhalványul */
+}
